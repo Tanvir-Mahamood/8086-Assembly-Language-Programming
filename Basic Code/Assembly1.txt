@@ -1,0 +1,596 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    EXIT:
+    MOV AH, 4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+
+;input 1 integer and print it
+;input 1 integer and print it
+.model small
+.stack 100h
+.code
+main proc
+    
+    mov ah, 1
+    int 21h
+    mov bl, al
+    
+    mov ah, 2 ;printing space
+    mov dl, 32
+    int 21h
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+;Addition of 2 numbers
+.model small
+.stack 100h
+.data
+a db 'Input first digit $'
+b db 'Input second digit $'
+c db 'Result $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bl, al 
+    
+    mov ah, 2  ;printing newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h 
+    
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bh, al
+    
+    mov ah, 2  ;printing newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h  
+    
+    mov ah, 9
+    lea dx, c
+    int 21h  
+    
+    add bl, bh ; bl = bl + bh
+    sub bl, 48
+    
+    mov  ah,2 
+    mov dl, bl 
+    int 21h
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+;input 2 integer and print them
+.model small
+.stack 100h
+.code  
+main proc  
+    
+    mov ah, 1
+    int 21h
+    mov bl, al
+    
+    mov ah, 1
+    int 21h
+    mov bh, al
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h
+    
+    mov ah, 2
+    mov dl, bh
+    int 21h  
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+
+
+;Initialize variable and print them
+.model small
+.stack 100h
+.data
+msz db 3   ;initialized by 3
+msz1 db ?  ;user input
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 2  
+    add msz, 48
+    mov dl, msz
+    int 21h  
+    
+    mov ah, 1
+    int 21h
+    mov msz1, al
+    
+    mov ah, 2  ;printing newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h 
+    
+    mov ah, 2
+    mov dl, msz1
+    int 21h
+     
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+
+;initialized string output
+.model small
+.stack 100h
+.data
+m db 'I Love Bangladesh $'
+.code
+main proc
+    mov ax, @data  ;initialized data segment to convert it into code segment
+    mov ds, ax   
+    
+    mov ah, 9
+    lea dx, m ;load effective address
+    int 21h
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+
+;loop to print A to Z
+.model small
+.stack 100h
+.data
+a db 'Loop Concept $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov ah, 2 ;newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    mov cx, 26 ;loop with 26 ladder
+    mov ah, 2
+    mov dl , 'A'
+    
+    level1:
+    int 21h
+    inc dl  ;dl increase untill 26 is reached
+    loop level1
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+
+;JMP Concept
+.model small
+.stack 100h
+.data
+a db 'JMP Concept $'
+b db 'Assembly Language $'  
+c db 'Programming $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov ah, 2 ;newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    m:
+    mov ah, 9
+    lea dx, b
+    int 21h
+    jmp n 
+    
+    n:
+    mov ah, 9
+    lea dx, c
+    int 21h
+    jmp exit
+    
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+;Addition of 2 numbers
+.model small
+.stack 100h
+.data
+a db 'Input first digit $'
+b db 'Input second digit $'
+c db 'Result $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bl, al 
+    
+    mov ah, 2  ;printing newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h 
+    
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bh, al
+    
+    mov ah, 2  ;printing newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h  
+    
+    mov ah, 9
+    lea dx, c
+    int 21h  
+    
+    add bl, bh ; bl = bl + bh
+    sub bl, 48
+    
+    mov  ah,2 
+    mov dl, bl 
+    int 21h
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+
+;Addition of 3 digits
+.model small
+.stack 100h
+.data
+msg db ?
+.code
+main proc
+    mov ah, 1
+    int 21h
+    mov bl, al 
+    
+    mov ah, 1
+    int 21h
+    mov bh, al  
+    
+    mov ah, 1
+    int 21h
+    mov cl, al    
+    
+    ;add bl, bh
+    ;sub bl, 48
+    ;add bl, cl
+    ;sub bl, 48
+    ;mov msg, bl   
+    
+    add bl, bh
+    sub bl, 48
+    mov ch, bl
+    add ch, cl
+    sub ch, 48
+    mov msg, ch
+    
+    mov ah, 2
+    mov dl, msg
+    int 21h
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+
+;Addition of 4 digits
+.model small
+.stack 100h
+.data
+a db ? 
+b db ?
+.code
+main proc  
+    mov ax, @data   
+    mov ds, ax
+    
+    mov ah, 1
+    int 21h
+    mov bl, al 
+    
+    mov ah, 1
+    int 21h
+    mov bh, al  
+    
+    mov ah, 1
+    int 21h
+    mov cl, al
+    
+    mov ah, 1
+    int 21h
+    mov ch, al
+    
+    add bl, bh
+    sub bl, 48
+    mov a, bl  
+    
+    add a, cl
+    sub a, 48
+    mov bl, a
+    
+    add bl, ch
+    sub bl, 48
+    mov b, bl
+    
+    mov ah, 2
+    mov dl, b
+    int 21h
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main 
+
+
+
+
+
+;Lower Case to Upper case
+.model small
+.stack 100h
+.data
+a db 'Lower form $'
+b db 10,13,'Upper form $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bl, al  
+    
+    mov ah, 2
+    sub bl, 32
+    mov dl, bl
+    int 21h
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+;largest digits amont 2 digits
+.model small
+.stack 100h
+.data
+a db 'Input 2 numbers $'
+b db 10,13,'Largest Number $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax 
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bl, al  
+    mov ah, 1
+    int 21h
+    mov bh, al 
+    
+    biggest:
+    cmp bl, bh
+    jg l1  ;if bl > bh
+    jmp l2 ;if bl < bh
+    
+    l2:
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov ah, 2
+    mov dl, bh
+    int 21h
+    jmp exit
+    
+    l1:
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h
+    jmp exit
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+    
+     
+  
+;largest digits amont 3 digits
+.model small
+.stack 100h
+.code
+main proc
+    mov ah, 1
+    int 21h
+    mov bl, al
+      
+    mov ah, 1
+    int 21h
+    mov bh, al 
+    
+    mov ah, 1
+    int 21h
+    mov cl, al 
+    
+    ;main operation
+    cmp bl, bh
+    jge a
+    
+    b:
+    cmp bh, cl
+    jge c
+    mov ah, 2
+    mov dl, cl
+    int 21h
+    jmp exit
+    
+    c:
+    mov ah, 2
+    mov dl, bh
+    int 21h
+    jmp exit
+    
+    a:
+    cmp bl, cl
+    jge d
+    mov ah, 2
+    mov dl, cl
+    int 21h
+    jmp exit
+    
+    d:
+    mov ah, 2
+    mov dl, bl
+    int 21h
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+    
+     
+    
+     
+    
+    

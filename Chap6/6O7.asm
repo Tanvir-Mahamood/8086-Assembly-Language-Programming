@@ -1,0 +1,26 @@
+;6.7 READ A CHARACTER. IF IT'S 'Y' OR 'y', DISPLAY IT
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC 
+    MOV AH, 1
+    INT 21H
+    
+    CMP AL, 'Y'
+    JE PRINT
+    CMP AL, 'y'
+    JE PRINT
+    JMP EXIT 
+    
+    PRINT:
+    MOV DL, AL
+    MOV AH, 2
+    INT 21H
+    
+    EXIT:
+    MOV AH, 4CH
+    INT 21H
+    MAIN ENDP
+END MAIN

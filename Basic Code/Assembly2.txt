@@ -1,0 +1,554 @@
+;constant declaration
+.model small
+.stack 100h
+.data
+a equ '2' ; it doesn't take memory space
+b equ 'Computer Science & Engineering $' ; it takes
+c db b
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 1
+    int 21h
+    mov bl, a
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    mov ah, 2
+    mov dl, a
+    int 21h 
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    mov ah, 9
+    lea dx, c
+    int 21h 
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+;Task:
+
+;1.Print ?
+;2.star print
+;*********** 
+;***********
+;***********
+;***********
+;***********
+;****CSE****
+;*********** 
+;***********
+;***********
+;***********
+;***********
+;3. Beep sound
+
+ 
+.model small
+.stack 100h 
+.data 
+a db '***********',10,13,'$' 
+b db '****$'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 2  
+    mov dl, '?'
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bl, al
+    
+    mov ah, 1
+    int 21h
+    mov bh, al
+    
+    mov ah, 1
+    int 21h
+    mov cl, al  
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    lea dx, a
+    mov ah, 9
+    int 21h
+    int 21h
+    int 21h
+    int 21h
+    int 21h
+    
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h 
+    
+    mov ah, 2
+    mov dl, bh
+    int 21h  
+    
+    mov ah, 2
+    mov dl, cl
+    int 21h  
+    
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h  
+    
+    lea dx, a
+    mov ah, 9
+    int 21h
+    int 21h
+    int 21h
+    int 21h
+    int 21h
+    
+    mov ah, 2
+    mov dl, 7
+    int 21h
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+
+
+;hex digit(A,B,C,D,E) to decimal digit
+.model small
+.stack 100h
+.data
+a db 'Input a hex digit : $'    
+b db 'In Decimal digit : $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov ah, 1
+    int 21h
+    mov bl, al 
+    
+    cmp bl, 64d  
+    jge aa
+    mov ah, 2
+    mov dl, bl
+    int 21h 
+    jmp exit
+    
+    aa:
+    sub bl, 17d ; C -> 67-50='2'
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov dl, 49d ;printint 1 at the first
+    mov ah, 2
+    int 21h
+    
+    mov dl, bl
+    mov ah, 2
+    int 21h 
+    
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+;Display 10*10 solid box of asterisks
+;using loop concept
+
+.model small
+.stack 100h
+.data
+a db 'Star related problem',10,13,'$'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov cx, 10 ;loop will move 10 times
+    
+    lev:
+    mov dl, '*'
+    mov ah, 2
+    int 21h 
+    int 21h
+    int 21h
+    int 21h 
+    int 21h
+    int 21h
+    int 21h
+    int 21h 
+    int 21h
+    int 21h
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    loop lev
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+
+;****
+;***
+;**
+;*
+
+.model small
+.stack 100h
+.code
+main proc
+    mov cx, 4
+    lev1:
+    mov bx, cx
+    
+    lev2:
+    mov ah, 2
+    mov dl, '*'
+    int 21h
+    loop lev2 
+    
+    mov ah, 2   ;newline
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    mov cx, bx
+    loop lev1
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+;Swap or exchang
+.model small
+.stack 100h
+.code
+main proc
+    
+    mov ah, 1
+    int 21h
+    mov bl, al 
+    int 21h
+    mov bh, al
+    
+    ;display 
+    
+    xchg bl, bh
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h
+    mov dl, bh
+    int 21h
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+;printing ASCII lists
+.model small
+.stack 100h
+.code
+main proc
+    mov cx, 0
+    
+    lev1:
+    mov bx, cx  ;bx consist of bl and bh
+    mov cx, 10
+    
+    lev2:
+    mov ah, 2
+    mov dl, bl  
+    int 21h
+    
+    inc bl
+    cmp bl, 255
+    je exit
+    loop lev2  
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    inc bl
+    mov cx, bx
+    loop lev1
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+;printing ASCII lists
+.model small
+.stack 100h
+.code
+main proc 
+    
+    lev1:
+    mov cx, 10
+    
+    lev2:
+    mov ah, 2
+    mov dl, bl  
+    int 21h
+    
+    inc bl
+    cmp bl, 255
+    je exit
+    loop lev2  
+    
+    mov ah, 2
+    mov dl, 10
+    int 21h
+    mov dl, 13
+    int 21h
+    
+    inc bl
+    loop lev1
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+    
+    
+
+;And, Or, Xor  
+.model small
+.stack 100h
+.data
+a db 10,13,'For AND $'  
+b db 10,13,'For OR $'
+c db 10,13,'For XOR $'  
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    mov bl, 111b
+    and bl, 101b
+    add bl, 48
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h
+    
+    or1:   
+    mov ah, 9
+    lea dx, b
+    int 21h
+    
+    mov bl, 101b
+    or bl, 101b
+    add bl, 48
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h  
+    
+    xor1:  ;to clear resister
+    mov ah, 9
+    lea dx, c
+    int 21h
+    
+    mov bl, 111b
+    xor bl, 100b
+    add bl, 48
+    
+    mov ah, 2
+    mov dl, bl
+    int 21h 
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main
+
+
+
+;Procedure making
+.model small
+.stack 100h
+.data
+a db 'Enter two numbers: $'
+b db 10,13,'Result: $'
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    proc1 proc
+        mov ah, 9
+        lea dx, a
+        int 21h
+        
+        mov ah, 1
+        int 21h
+        mov bl, al
+        int 21h
+        mov bh, al
+        
+        call proc2
+        ret
+        
+        proc2 proc
+            mov ah, 9
+            lea dx, b
+            int 21h
+            
+            add bl, bh
+            sub bl, 48
+            
+            mov ah, 2
+            mov dl, bl
+            int 21h
+            
+            cmp bl, 13
+            jmp exit
+            ret
+            
+            exit:
+            mov ah, 4ch
+            int 21h
+            
+
+
+
+
+;Password check
+.model small
+.stack 100h
+.data
+a db 'Enter your password $'
+ok db 'Correct Password $'
+notok db 'Wrong Password $'
+pass db 'assembly$'
+pass1 dw 8
+.code
+main proc
+    mov ax, @data
+    mov ds, ax
+    
+    mov cx, pass1
+    mov bx, offset pass
+    
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    l1:
+    mov ah, 8
+    int 21h
+    
+    cmp al, [bx]
+    jne l2
+    inc bx
+    loop l1
+    
+    mov ah, 9
+    lea dx, ok
+    int 21h
+    jmp exit
+    
+    l2:
+    mov ah, 9
+    lea dx, notok
+    int 21h
+    
+    exit:
+    mov ah, 4ch
+    int 21h
+    main endp
+end main   
+    
+    
+    
