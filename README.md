@@ -1,6 +1,6 @@
 # 8086 Assembly Programming
 **Reference Book: Assembly Language Programming and Organization of the IBM PC <br> Ytha Yu <br> Charles marut <br>**
-This repository contains my labtasks and exercises from this book during my `Microprocessors, Microcontrollers and Assembly` Course
+This repository contains my Lab-Tasks and exercises from this book during my `Microprocessors, Microcontrollers and Assembly` Course
 ## Software Installation: 
 [emu8086](https://emu8086-microprocessor-emulator.en.softonic.com/download)
 
