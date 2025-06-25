@@ -35,7 +35,8 @@ Password checking, Constant declaration, Character Input and Output, Hex digit t
 - Chapter11: Exercises from book. String Input-Output, Count number of vowel and consonant in a string
 
 
-
+## 📄 License
+This project is open source and available under the [MIT License](LICENSE).
 
 
 
